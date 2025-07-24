@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+  min-height: 100vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  color: #00695c;
+}
+
+input {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 2px solid #b2dfdb;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #26a69a;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #00897b;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #00695c;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.output {
+  background-color: white;
+  margin-top: 40px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.output h3 {
+  color: #37474f;
+  margin-bottom: 10px;
+}
+
+pre {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+p{
+  color:#37474f;
+}
