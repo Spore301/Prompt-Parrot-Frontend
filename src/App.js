@@ -13,7 +13,7 @@ function App() {
     setGeneratedPrompt('');
 
     try {
-      const response = await fetch('http://localhost:3005/generate-prompt', {
+      const response = await fetch('https://prompt-parrot-backend.onrender.com/generate-prompt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ category, tone, topic }),
