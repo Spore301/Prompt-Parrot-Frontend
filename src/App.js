@@ -29,6 +29,8 @@ function App() {
     }
   };
 
+  
+
   return (
     <div className="App">
       <h1>🦜 Prompt Parrot</h1>
@@ -60,11 +62,20 @@ function App() {
 
       <div className="output">
         {generatedPrompt && (
-          <>
-            <h3>📝 Generated Prompt:</h3>
-            <pre>{generatedPrompt}</pre>
-          </>
-        )}
+  <>
+    <h3>📝 Generated Prompt:</h3>
+    <pre>{generatedPrompt}</pre>
+
+    <button onClick={() => {
+      navigator.clipboard.writeText(generatedPrompt)
+        .then(() => alert('Prompt copied to clipboard!'))
+        .catch(err => console.error('Failed to copy: ', err));
+      }}>
+          📋 Copy to Clipboard
+        </button>
+      </>
+    )}
+
       </div>
       <p>@Spore301</p>
     </div>
