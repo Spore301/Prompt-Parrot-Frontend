@@ -25,7 +25,8 @@ h1 {
 }
 
 input {
-  width: 100%;
+  
+  width: -webkit-fill-available;
   max-width: 500px;
   padding: 14px;
   font-size: 1rem;
