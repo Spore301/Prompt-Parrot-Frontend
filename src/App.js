@@ -7,10 +7,19 @@ function App() {
   const [topic, setTopic] = useState('');
   const [generatedPrompt, setGeneratedPrompt] = useState('');
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleGenerate = async () => {
     setLoading(true);
     setGeneratedPrompt('');
+    setProgress(0);
+
+    let interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 90) return prev;
+        return prev + 10;
+      });
+    }, 200);
 
     try {
       const response = await fetch('https://prompt-parrot-backend.onrender.com/generate-prompt', {
@@ -25,11 +34,14 @@ function App() {
       console.error('Error:', error);
       setGeneratedPrompt('Something went wrong. Try again!');
     } finally {
-      setLoading(false);
+      clearInterval(interval);
+      setProgress(100);
+      setTimeout(() => {
+        setLoading(false);
+        setProgress(0);
+      }, 500);
     }
   };
-
-  
 
   return (
     <div className="App">
@@ -60,23 +72,30 @@ function App() {
         {loading ? 'Generating...' : 'Generate Prompt'}
       </button>
 
+      {/* Progress Bar */}
+      {loading && (
+        <div className="progress-container">
+          <div className="progress-bar" style={{ width: `${progress}%` }} />
+        </div>
+      )}
+
       <div className="output">
         {generatedPrompt && (
-  <>
-    <h3>📝 Generated Prompt:</h3>
-    <pre>{generatedPrompt}</pre>
+          <>
+            <h3>📝 Generated Prompt:</h3>
+            <pre>{generatedPrompt}</pre>
 
-    <button onClick={() => {
-      navigator.clipboard.writeText(generatedPrompt)
-        .then(() => alert('Prompt copied to clipboard!'))
-        .catch(err => console.error('Failed to copy: ', err));
-      }}>
-          📋 Copy to Clipboard
-        </button>
-      </>
-    )}
-
+            <button onClick={() => {
+              navigator.clipboard.writeText(generatedPrompt)
+                .then(() => alert('Prompt copied to clipboard!'))
+                .catch(err => console.error('Failed to copy: ', err));
+            }}>
+              📋 Copy to Clipboard
+            </button>
+          </>
+        )}
       </div>
+
       <p>@Spore301</p>
     </div>
   );
